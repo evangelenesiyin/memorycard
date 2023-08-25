@@ -1,5 +1,6 @@
 body {
   background-color: rgb(250, 219, 139);
+  text-align: center;
 }
 h1 {
   padding: 20px;
@@ -7,20 +8,21 @@ h1 {
 p {
   padding-bottom: 20px;
 }
-.container {
+.mainmenu, .normaldeck, .harddeck, .success1 {
   max-width: 450px;
   height: 450px;
   background-color: white;
   margin: 200px auto;
-  text-align: center;
-  padding: 100px;
   border-radius: 5px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  display: none;
+}
+.mainmenu {
+  padding: 100px;
 }
 .btn-secondary {
   background-color: rgb(250, 219, 139);
   color: black;
+  width: 100px;
   border: none;
   font-size: 17px;
   padding: 10px 20px;
@@ -31,16 +33,23 @@ p {
   color: white;
   cursor: pointer;
 }
-.deck {
-  max-width: 450px;
-  height: 450px;
-  background-color: white;
-  margin: 200px auto;
-  text-align: center;
-  padding: 100px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+.normaldeck {
+  padding: 40px;
+  display: none;
 }
-.card {
-  
+.frontview {
+  margin: 5px;
+  background-color: rgb(250, 219, 139);
+  border: 0;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  font-size: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.harddeck {
+  padding: 50px;
+  display: none;
+}
+.success1 {
+  display: none;
 }
