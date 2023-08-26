@@ -43,8 +43,8 @@ function appendFruit(index) {
   const addFruit = document.createElement("img");
   addFruit.src = fruitsArray[index];
   addFruit.className = "fruits";
-  addFruit.style.width = "40px";
-  addFruit.style.height = "40px";
+  addFruit.style.width = "45px";
+  addFruit.style.height = "45px";
   return addFruit;
 }
 
