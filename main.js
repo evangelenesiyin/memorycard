@@ -1,12 +1,20 @@
-const fruits = [
-  "avocado.png",
-  "blueberry.png",
-  "coconut.png",
-  "kiwi.png",
-  "lemon.png",
-  "mango.png",
-  "orange.png",
-  "watermelon.png",
+const fruitsArray = [
+  "assets/avocado.png",
+  "assets/blueberry.png",
+  "assets/coconut.png",
+  "assets/kiwi.png",
+  "assets/lemon.png",
+  "assets/mango.png",
+  "assets/orange.png",
+  "assets/watermelon.png",
+  "assets/avocado.png",
+  "assets/blueberry.png",
+  "assets/coconut.png",
+  "assets/kiwi.png",
+  "assets/lemon.png",
+  "assets/mango.png",
+  "assets/orange.png",
+  "assets/watermelon.png",
 ];
 
 let matchedCards = 0;
@@ -29,4 +37,20 @@ function startNormal() {
 function startHard() {
   hardMode.classList.remove("none");
   mainMenu.style.display = "none";
+}
+
+function appendFruit(index) {
+  const addFruit = document.createElement("img");
+  addFruit.src = fruitsArray[index];
+  addFruit.className = "fruits";
+  addFruit.style.width = "40px";
+  addFruit.style.height = "40px";
+  return addFruit;
+}
+
+for (let i = 0; i < card.length; i++) {
+  card[i].addEventListener("click", function () {
+    card[i].innerHTML = "";
+    card[i].append(appendFruit(i));
+  });
 }
