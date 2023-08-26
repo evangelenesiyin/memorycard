@@ -35,8 +35,8 @@ p {
 }
 .normaldeck {
   padding: 40px;
-  display: none;
 }
+
 .frontview {
   margin: 5px;
   background-color: rgb(250, 219, 139);
@@ -47,9 +47,9 @@ p {
   cursor: pointer;
 }
 .harddeck {
-  padding: 50px;
-  display: none;
+  padding: 30px 40px;
 }
-.success1 {
+
+.none {
   display: none;
 }
