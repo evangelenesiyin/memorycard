@@ -12,7 +12,21 @@ const fruits = [
 let matchedCards = 0;
 
 const mainMenu = document.querySelector(".mainmenu");
-const normalMode = document.querySelector(".normal");
+const normalButton = document.querySelector(".normal");
+const hardButton = document.querySelector(".hard");
+const normalMode = document.querySelector(".normaldeck");
+const hardMode = document.querySelector(".harddeck");
 const card = document.querySelectorAll(".frontview");
 
-normalMode.addEventListener("click", startNormal);
+normalButton.addEventListener("click", startNormal);
+hardButton.addEventListener("click", startHard);
+
+function startNormal() {
+  normalMode.classList.remove("none");
+  mainMenu.style.display = "none";
+}
+
+function startHard() {
+  hardMode.classList.remove("none");
+  mainMenu.style.display = "none";
+}
