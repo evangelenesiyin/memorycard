@@ -37,8 +37,11 @@ p {
   padding: 60px 50px;
   font-size: 35px;
 }
-
-.frontview {
+.harddeck {
+  padding: 50px 30px;
+  font-size: 25px;
+}
+.normalCard, .hardCard {
   margin: 5px;
   background-color: rgb(250, 219, 139);
   border: 0;
@@ -46,11 +49,6 @@ p {
   border-radius: 5px;
   cursor: pointer;
 }
-.harddeck {
-  padding: 30px;
-  font-size: 20px;
-}
-
 .none {
   display: none;
 }
