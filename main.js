@@ -9,8 +9,6 @@ let fruitsArray = [
   "public/assets/watermelon.png",
 ];
 
-let matchedCards = 0;
-
 const mainMenu = document.querySelector(".mainmenu");
 const normalButton = document.querySelector(".normal");
 const hardButton = document.querySelector(".hard");
@@ -58,15 +56,42 @@ function appendFruit(index) {
   return addFruit;
 }
 
+// empty array to store opened cards
+let openCards = [];
+
 // append image elements in each grid upon clicking
 for (let i = 0; i < card.length; i++) {
   card[i].addEventListener("click", function () {
-    card[i].innerHTML = "";
-    card[i].append(appendFruit(i));
+    if (openCards.length < 2) {
+      card[i].innerHTML = "";
+      card[i].append(appendFruit(i));
+      openCards.push(card[i]);
+      compareCards();
+    }
   });
 }
 
-// shuffle deck
+// compare cards and flip back if unmatched
+function compareCards() {
+  if (openCards.length === 2) {
+    if (
+      openCards[0].querySelector("img").src !==
+      openCards[1].querySelector("img").src
+    ) {
+      setTimeout(() => {
+        openCards.forEach((openCard) => {
+          openCard.innerHTML = "?";
+        });
+        openCards = [];
+      }, 800);
+    } else {
+      // keep cards open if matched
+      openCards = [];
+    }
+  }
+}
+
+// shuffle deck using reverse loop
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
