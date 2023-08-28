@@ -9,15 +9,15 @@ p {
   padding-bottom: 20px;
 }
 .mainmenu, .normaldeck, .harddeck, .success1 {
-  max-width: 450px;
-  height: 450px;
+  max-width: 520px;
+  height: 500px;
   background-color: white;
   margin: 200px auto;
   border-radius: 5px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
 .mainmenu {
-  padding: 100px;
+  padding: 120px;
 }
 .btn-secondary {
   background-color: rgb(250, 219, 139);
@@ -34,7 +34,8 @@ p {
   cursor: pointer;
 }
 .normaldeck {
-  padding: 40px;
+  padding: 60px 50px;
+  font-size: 35px;
 }
 
 .frontview {
@@ -42,12 +43,12 @@ p {
   background-color: rgb(250, 219, 139);
   border: 0;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-  font-size: 35px;
   border-radius: 5px;
   cursor: pointer;
 }
 .harddeck {
-  padding: 30px 40px;
+  padding: 30px;
+  font-size: 20px;
 }
 
 .none {
