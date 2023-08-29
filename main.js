@@ -117,13 +117,19 @@ let openHardCards = [];
 // append image elements in each grid upon clicking - normal mode
 for (let i = 0; i < normalCard.length; i++) {
   const clickedCard = normalCard[i];
-  clickedCard.addEventListener("click", function () {
+  clickedCard.addEventListener("click", function (event) {
+    // checks if clicked card has already been matched and open
+    if (clickedCard.classList.contains("open")) {
+      event.preventDefault();
+      console.log(event.target.classList, "matched");
+      return;
+    }
     if (compareCards.length < 2) {
       clickedCard.innerHTML = "";
       clickedCard.append(appendFruit(i));
-      clickedCard.classList.add("opencard");
       compareCards.push(clickedCard);
       compareNormalCards();
+      console.log(event.target.classList, "unmatched");
     }
   });
 }
@@ -153,22 +159,23 @@ function compareNormalCards() {
           openCard.innerHTML = "?";
         });
         compareCards = [];
-        console.log("cards not the same, close back");
       }, 1000);
     } else {
-      // check duplicates and push into openCards array
+      // for every pair matched, check duplicates against the elements in openCards array and push it in
       if (!openCards.includes(compareCards[0])) {
+        compareCards[0].classList.add("open");
         openCards.push(compareCards[0]);
       }
       if (!openCards.includes(compareCards[1])) {
+        compareCards[1].classList.add("open");
         openCards.push(compareCards[1]);
       }
       // keep cards open if matched
       compareCards = [];
+      // show success page if all cards are opened
       if (openCards.length === 16) {
         completeLevel();
       }
-      console.log("keep open if same");
     }
   }
 }
