@@ -9,15 +9,7 @@ let fruitsArray = [
   "assets/watermelon.png",
 ];
 
-let hardFruitsArray = [
-  "assets/avocado.png",
-  "assets/blueberry.png",
-  "assets/coconut.png",
-  "assets/kiwi.png",
-  "assets/lemon.png",
-  "assets/mango.png",
-  "assets/orange.png",
-  "assets/watermelon.png",
+let newFruits = [
   "assets/tomato.png",
   "assets/cherry.png",
   "assets/melon.png",
@@ -27,6 +19,9 @@ let hardFruitsArray = [
   "assets/greenapple.png",
 ];
 
+let hardFruitsArray = [...fruitsArray];
+hardFruitsArray.push(...newFruits);
+
 const mainMenu = document.querySelector(".mainmenu");
 const normalButton = document.querySelector(".normal");
 const hardButton = document.querySelector(".hard");
@@ -34,19 +29,22 @@ const normalMode = document.querySelector(".normaldeck");
 const hardMode = document.querySelector(".harddeck");
 const normalCard = document.querySelectorAll(".normalCard");
 const hardCard = document.querySelectorAll(".hardCard");
-const success = document.querySelector(".success");
+const successNormal = document.querySelector(".successNormal");
+const successHard = document.querySelector(".successHard");
 const nextLevel = document.querySelector(".next");
+const backMainMenu = document.querySelector(".back");
 
 normalButton.addEventListener("click", startNormal);
 hardButton.addEventListener("click", startHard);
 nextLevel.addEventListener("click", proceedHard);
+backMainMenu.addEventListener("click", backToMenu);
 
 // ================================================
 
 // starts normal mode - duplicates the array of existing cards and shuffles the deck
 function startNormal() {
   normalMode.classList.remove("none");
-  mainMenu.style.display = "none";
+  mainMenu.classList.add("none");
   normalDeck(fruitsArray);
   shuffleArray(fruitsArray);
 }
@@ -67,6 +65,7 @@ function startHard() {
   shuffleArray(hardFruitsArray);
 }
 
+// duplicating elements in hardFruitsArray to fit 5 x 6 grid
 function hardDeck() {
   hardFruitsArray = hardFruitsArray.concat(hardFruitsArray);
   return hardFruitsArray;
@@ -75,10 +74,15 @@ function hardDeck() {
 // ================================================
 
 function proceedHard() {
-  success.classList.add("none");
+  successNormal.classList.add("none");
   hardMode.classList.remove("none");
   hardDeck(hardFruitsArray);
   shuffleArray(hardFruitsArray);
+}
+
+function backToMenu() {
+  successNormal.classList.add("none");
+  mainMenu.classList.remove("none");
 }
 
 // ================================================
@@ -111,6 +115,7 @@ function shuffleArray(array) {
 
 // empty array to store opened cards
 let compareCards = [];
+let compareHardCards = [];
 let openCards = [];
 let openHardCards = [];
 
@@ -121,34 +126,36 @@ for (let i = 0; i < normalCard.length; i++) {
     // checks if clicked card has already been matched and open
     if (clickedCard.classList.contains("open")) {
       event.preventDefault();
-      console.log(event.target.classList, "matched");
       return;
     }
     if (compareCards.length < 2) {
       clickedCard.innerHTML = "";
       clickedCard.append(appendFruit(i));
       compareCards.push(clickedCard);
-      compareNormalCards();
-      console.log(event.target.classList, "unmatched");
+      compareNormal();
     }
   });
 }
 
 // append image elements in each grid upon clicking - hard mode
 for (let i = 0; i < hardCard.length; i++) {
-  hardCard[i].addEventListener("click", function () {
-    const clickedHardCard = hardCard[i];
-    if (openHardCards.length < 2) {
+  const clickedHardCard = hardCard[i];
+  clickedHardCard.addEventListener("click", function (event) {
+    if (clickedHardCard.classList.contains("openHard")) {
+      event.preventDefault();
+      return;
+    }
+    if (compareHardCards.length < 2) {
       clickedHardCard.innerHTML = "";
       clickedHardCard.append(appendFruitHard(i));
-      openHardCards.push(clickedHardCard);
-      compareHardCards();
+      compareHardCards.push(clickedHardCard);
+      compareHard();
     }
   });
 }
 
 // compare cards and flip back if unmatched - normal mode
-function compareNormalCards() {
+function compareNormal() {
   if (compareCards.length === 2) {
     if (
       compareCards[0].querySelector("img").src !==
@@ -172,38 +179,54 @@ function compareNormalCards() {
       }
       // keep cards open if matched
       compareCards = [];
-      // show success page if all cards are opened
+      // show successNormal page if all cards are opened
       if (openCards.length === 16) {
-        completeLevel();
+        completeNormalLevel();
       }
     }
   }
 }
 
 // compare cards and flip back if unmatched - hard mode
-function compareHardCards() {
-  if (openHardCards.length === 2) {
+function compareHard() {
+  if (compareHardCards.length === 2) {
     if (
-      openHardCards[0].querySelector("img").src !==
-      openHardCards[1].querySelector("img").src
+      compareHardCards[0].querySelector("img").src !==
+      compareHardCards[1].querySelector("img").src
     ) {
       setTimeout(() => {
-        openHardCards.forEach((openHardCard) => {
+        compareHardCards.forEach((openHardCard) => {
           openHardCard.innerHTML = "?";
         });
-        openHardCards = [];
-        console.log("cards not the same, close back");
+        compareHardCards = [];
       }, 1000);
     } else {
+      // for every pair matched, check duplicates against the elements in openHardCards array and push it in
+      if (!openHardCards.includes(compareHardCards[0])) {
+        compareHardCards[0].classList.add("openHard");
+        openHardCards.push(compareHardCards[0]);
+      }
+      if (!openHardCards.includes(compareHardCards[1])) {
+        compareHardCards[1].classList.add("openHard");
+        openHardCards.push(compareHardCards[1]);
+      }
       // keep cards open if matched
-      openHardCards = [];
-      console.log("keep open if same");
+      compareHardCards = [];
+      // show successNormal page if all cards are opened
+      if (openHardCards.length === 30) {
+        completeHardLevel();
+      }
     }
   }
 }
 
 // triggers when player completes normal mode
-function completeLevel() {
+function completeNormalLevel() {
   normalMode.classList.add("none");
-  success.classList.remove("none");
+  successNormal.classList.remove("none");
+}
+// triggers when player completes hard mode
+function completeHardLevel() {
+  hardMode.classList.add("none");
+  successHard.classList.remove("none");
 }
