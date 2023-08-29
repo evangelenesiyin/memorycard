@@ -35,9 +35,11 @@ const hardMode = document.querySelector(".harddeck");
 const normalCard = document.querySelectorAll(".normalCard");
 const hardCard = document.querySelectorAll(".hardCard");
 const success = document.querySelector(".success");
+const nextLevel = document.querySelector(".next");
 
 normalButton.addEventListener("click", startNormal);
 hardButton.addEventListener("click", startHard);
+nextLevel.addEventListener("click", proceedHard);
 
 // ================================================
 
@@ -72,6 +74,15 @@ function hardDeck() {
 
 // ================================================
 
+function proceedHard() {
+  success.classList.add("none");
+  hardMode.classList.remove("none");
+  hardDeck(hardFruitsArray);
+  shuffleArray(hardFruitsArray);
+}
+
+// ================================================
+
 // create image elements for normal mode
 function appendFruit(index) {
   const addFruit = document.createElement("img");
@@ -99,17 +110,19 @@ function shuffleArray(array) {
 }
 
 // empty array to store opened cards
+let compareCards = [];
 let openCards = [];
 let openHardCards = [];
 
 // append image elements in each grid upon clicking - normal mode
 for (let i = 0; i < normalCard.length; i++) {
-  normalCard[i].addEventListener("click", function appendCard() {
-    const clickedCard = normalCard[i];
-    if (openCards.length < 2) {
+  const clickedCard = normalCard[i];
+  clickedCard.addEventListener("click", function () {
+    if (compareCards.length < 2) {
       clickedCard.innerHTML = "";
       clickedCard.append(appendFruit(i));
-      openCards.push(clickedCard);
+      clickedCard.classList.add("opencard");
+      compareCards.push(clickedCard);
       compareNormalCards();
     }
   });
@@ -117,7 +130,7 @@ for (let i = 0; i < normalCard.length; i++) {
 
 // append image elements in each grid upon clicking - hard mode
 for (let i = 0; i < hardCard.length; i++) {
-  hardCard[i].addEventListener("click", function appendCard() {
+  hardCard[i].addEventListener("click", function () {
     const clickedHardCard = hardCard[i];
     if (openHardCards.length < 2) {
       clickedHardCard.innerHTML = "";
@@ -130,21 +143,31 @@ for (let i = 0; i < hardCard.length; i++) {
 
 // compare cards and flip back if unmatched - normal mode
 function compareNormalCards() {
-  if (openCards.length === 2) {
+  if (compareCards.length === 2) {
     if (
-      openCards[0].querySelector("img").src !==
-      openCards[1].querySelector("img").src
+      compareCards[0].querySelector("img").src !==
+      compareCards[1].querySelector("img").src
     ) {
       setTimeout(() => {
-        openCards.forEach((openCard) => {
+        compareCards.forEach((openCard) => {
           openCard.innerHTML = "?";
         });
-        openCards = [];
+        compareCards = [];
         console.log("cards not the same, close back");
       }, 1000);
     } else {
+      // check duplicates and push into openCards array
+      if (!openCards.includes(compareCards[0])) {
+        openCards.push(compareCards[0]);
+      }
+      if (!openCards.includes(compareCards[1])) {
+        openCards.push(compareCards[1]);
+      }
       // keep cards open if matched
-      openCards = [];
+      compareCards = [];
+      if (openCards.length === 16) {
+        completeLevel();
+      }
       console.log("keep open if same");
     }
   }
