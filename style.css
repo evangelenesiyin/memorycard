@@ -8,7 +8,7 @@ h1 {
 p {
   padding-bottom: 20px;
 }
-.mainmenu, .normaldeck, .harddeck, .success1 {
+.mainmenu, .normaldeck, .harddeck, .success {
   max-width: 520px;
   height: 500px;
   background-color: white;
@@ -48,6 +48,12 @@ p {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
+}
+.success {
+  padding: 130px 20px;
+}
+.next, .back {
+  width: 130px;
 }
 .none {
   display: none;
