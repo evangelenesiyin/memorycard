@@ -16,7 +16,7 @@
 The time given to complete this project is 1 week.<br />
 
 I outlined the steps I took to build this project below:
-1. Draw a rough sketch of the wireframe to display the flow of the game e.g. main menu, actual game, win/loss pages, etc
+1. Draw a rough sketch of the wireframe to display the flow of the game - you can view it <a href="https://www.figma.com/file/pAYLwdUUbU9GbX8jzC97Gh/Memory-Card-Game-(Project-1)?type=design&node-id=0%3A1&mode=design&t=xMCBTFMv7KVi3MKj-1">here</a>
 2. Build the skeleton of the game using HTML, CSS, and Bootstrap
 3. Integrate the game logic using JavaScript:
    - Shuffling card deck
@@ -42,7 +42,7 @@ The game's objective is to click and match two identical cards until all cards a
 <ul>
   <li>HTML</li>
   <li>CSS</li>
-  <li>Bootstrap (Incorporated into some portions of HTML</li>
+  <li>Bootstrap</li>
   <li>Git & GitHub</li>
 </ul>
 
