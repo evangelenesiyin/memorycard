@@ -33,6 +33,7 @@ The game's objective is to click and match two identical cards until all cards a
 ## Screenshots
 
 ### Main Menu
+![image](https://github.com/evangelenesiyin/memorycard/assets/108106809/1f5c2add-9348-4973-9e6c-a0150fd6a50b)
 
 ### Normal and Hard Mode
 
