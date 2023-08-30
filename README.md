@@ -33,10 +33,12 @@ The game's objective is to click and match two identical cards until all cards a
 ## Screenshots
 
 ### Main Menu
-![image](https://github.com/evangelenesiyin/memorycard/assets/108106809/1f5c2add-9348-4973-9e6c-a0150fd6a50b)
+<img src="https://github.com/evangelenesiyin/memorycard/assets/108106809/1f5c2add-9348-4973-9e6c-a0150fd6a50b" width="800" />
 
 ### Normal and Hard Mode
 
+<img src="https://github.com/evangelenesiyin/memorycard/assets/108106809/b277d484-942a-4f2a-ac3f-26c579c3ed51" width="400" />
+<img src="https://github.com/evangelenesiyin/memorycard/assets/108106809/0265beb8-e5c3-42b7-8d24-13c96c627323" width="400" />
 
 ## Technologies Used
 
@@ -55,6 +57,7 @@ Flip It! is deployed on Vercel, click here to view and play the game - https://m
 ## Next Steps
 
 <ul>
-  <li>Ensure scalability to accommodate and integrate other modes with increased difficulty, such as having more grids without manually adding them in HTML.</li>
+  <li>Ensure scalability to accommodate and integrate other modes with increased difficulty.</li>
+  <li>Add flip animation to cards.</li>
   <li>Allow selection of elements by including other categories of images e.g. animals, plants/flowers, etc.</li>
 </ul>
