@@ -19,6 +19,7 @@ let newFruits = [
   "assets/greenapple.png",
 ];
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 let hardFruitsArray = [...fruitsArray];
 hardFruitsArray.push(...newFruits);
 
@@ -35,6 +36,7 @@ const nextLevel = document.querySelector(".next");
 const backMainMenu = document.querySelector(".back");
 const backMainMenu1 = document.querySelector(".back1");
 const timer = document.querySelector(".timervalue");
+const timerHard = document.querySelector(".timerhard");
 const failure = document.querySelector(".failure");
 const tryAgain = document.querySelector(".tryagain");
 
@@ -43,7 +45,9 @@ hardButton.addEventListener("click", startHard);
 nextLevel.addEventListener("click", proceedHard);
 backMainMenu.addEventListener("click", backToMenu);
 backMainMenu1.addEventListener("click", backToMenu1);
-tryAgain.addEventListener("click", resetGame);
+tryAgain.addEventListener("click", function () {
+  location.reload();
+});
 
 // ================================================
 
@@ -123,6 +127,7 @@ function appendFruitHard(index) {
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
+    // swap current element with element at the random index
     [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
   }
 }
@@ -132,25 +137,49 @@ let compareCards = [];
 let compareHardCards = [];
 let openCards = [];
 let openHardCards = [];
-let timerSeconds = 20;
+
+let timerNormalSeconds = 30;
+let timerHardSeconds = 80;
 let startTimer = false;
 
 // ================================================
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 function updateDisplay() {
-  const minutes = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
-  const seconds = String(timerSeconds % 60).padStart(2, "0");
+  const minutes = String(Math.floor(timerNormalSeconds / 60)).padStart(2, "0");
+  const seconds = String(timerNormalSeconds % 60).padStart(2, "0");
   timer.textContent = `${minutes}:${seconds}`;
 }
 
-function startUponClick() {
+function updateHardDisplay() {
+  const minutes = String(Math.floor(timerHardSeconds / 60)).padStart(2, "0");
+  const seconds = String(timerHardSeconds % 60).padStart(2, "0");
+  timerhard.textContent = `${minutes}:${seconds}`;
+}
+
+function startNormalTimer() {
   if (!startTimer) {
     startTimer = true;
     updateDisplay();
     let timerInterval = setInterval(() => {
-      timerSeconds--;
+      timerNormalSeconds--;
       updateDisplay();
-      if (timerSeconds === 0 && openCards.length < 16) {
+      if (timerNormalSeconds === 0 && openCards.length < 16) {
+        clearInterval(timerInterval);
+        gameOver();
+      }
+    }, 1000);
+  }
+}
+
+function startHardTimer() {
+  if (!startTimer) {
+    startTimer = true;
+    updateHardDisplay();
+    let timerInterval = setInterval(() => {
+      timerHardSeconds--;
+      updateHardDisplay();
+      if (timerHardSeconds === 0 && openCards.length < 30) {
         clearInterval(timerInterval);
         gameOver();
       }
@@ -163,19 +192,16 @@ function gameOver() {
   failure.classList.remove("none");
 }
 
-function resetGame() {
-  failure.classList.add("none");
-  normalMode.classList.remove("none");
-  startUponClick();
-}
-
 // ================================================
 
 // append image elements in each grid upon clicking - normal mode
 for (let i = 0; i < normalCard.length; i++) {
   const clickedCard = normalCard[i];
-  clickedCard.addEventListener("click", function (event) {
-    startUponClick();
+  clickedCard.addEventListener("click", function appendImage(event) {
+    startNormalTimer();
+    const clickedCard = event.currentTarget;
+    // defining i by getting the index of clicked card
+    const i = Array.from(normalCard).indexOf(clickedCard);
     // checks if clicked card has already been matched and open
     if (clickedCard.classList.contains("open")) {
       event.preventDefault();
@@ -194,6 +220,7 @@ for (let i = 0; i < normalCard.length; i++) {
 for (let i = 0; i < hardCard.length; i++) {
   const clickedHardCard = hardCard[i];
   clickedHardCard.addEventListener("click", function (event) {
+    startHardTimer();
     if (clickedHardCard.classList.contains("openHard")) {
       event.preventDefault();
       return;
