@@ -21,7 +21,7 @@ I outlined the steps I took to build this project below:
 3. Integrate the game logic using JavaScript:
    - Shuffling card deck
    - Append and render images upon clicking each card
-   - Comparing two cards and invoke an action (flipping it back if not identical, remain open AND disable clicks if identical)
+   - Comparing two cards and invoke an action (flip it back if not identical, remain open AND disable clicks if identical)
    - Timer countdown and invoke an action (game over page if lose, next level page/game complete page if win)
 
 ## Description
@@ -44,6 +44,7 @@ The game's objective is to click and match two identical cards until all cards a
   <li>CSS</li>
   <li>Bootstrap</li>
   <li>Git & GitHub</li>
+  <li>ViteJS</li>
 </ul>
 
 ## Getting Started
@@ -52,4 +53,7 @@ Flip It! is deployed on Vercel, click here to view and play the game - https://m
 
 ## Next Steps
 
-## Credits and References
+<ul>
+  <li>Ensure scalability to accommodate and integrate other modes with increased difficulty, such as having more grids without manually adding them in HTML.</li>
+  <li>Allow selection of elements by including other categories of images e.g. animals, plants/flowers, etc.</li>
+</ul>
