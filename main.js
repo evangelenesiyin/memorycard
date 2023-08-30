@@ -182,6 +182,7 @@ function startHardTimer() {
 
 function gameOver() {
   normalMode.classList.add("none");
+  hardMode.classList.add("none");
   failure.classList.remove("none");
 }
 
