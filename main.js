@@ -36,15 +36,19 @@ const nextLevel = document.querySelector(".next");
 const backMainMenu = document.querySelector(".back");
 const backMainMenu1 = document.querySelector(".back1");
 const timer = document.querySelector(".timervalue");
-const timerHard = document.querySelector(".timerhard");
+const timerHard = document.querySelector(".hardtimervalue");
 const failure = document.querySelector(".failure");
 const tryAgain = document.querySelector(".tryagain");
 
 normalButton.addEventListener("click", startNormal);
 hardButton.addEventListener("click", startHard);
 nextLevel.addEventListener("click", proceedHard);
-backMainMenu.addEventListener("click", backToMenu);
-backMainMenu1.addEventListener("click", backToMenu1);
+backMainMenu.addEventListener("click", function () {
+  location.reload();
+});
+backMainMenu1.addEventListener("click", function () {
+  location.reload();
+});
 tryAgain.addEventListener("click", function () {
   location.reload();
 });
@@ -91,18 +95,6 @@ function proceedHard() {
   shuffleArray(hardFruitsArray);
 }
 
-// success page after clearing normal mode - upon clicking Main Menu
-function backToMenu() {
-  successNormal.classList.add("none");
-  mainMenu.classList.remove("none");
-}
-
-// success page after clearing hard mode - upon clicking Main Menu
-function backToMenu1() {
-  successHard.classList.add("none");
-  mainMenu.classList.remove("none");
-}
-
 // ================================================
 
 // create image elements for normal mode
@@ -141,6 +133,7 @@ let openHardCards = [];
 let timerNormalSeconds = 30;
 let timerHardSeconds = 80;
 let startTimer = false;
+let startTimerHard = false;
 
 // ================================================
 
@@ -154,7 +147,7 @@ function updateDisplay() {
 function updateHardDisplay() {
   const minutes = String(Math.floor(timerHardSeconds / 60)).padStart(2, "0");
   const seconds = String(timerHardSeconds % 60).padStart(2, "0");
-  timerhard.textContent = `${minutes}:${seconds}`;
+  timerHard.textContent = `${minutes}:${seconds}`;
 }
 
 function startNormalTimer() {
@@ -173,8 +166,8 @@ function startNormalTimer() {
 }
 
 function startHardTimer() {
-  if (!startTimer) {
-    startTimer = true;
+  if (!startTimerHard) {
+    startTimerHard = true;
     updateHardDisplay();
     let timerInterval = setInterval(() => {
       timerHardSeconds--;
