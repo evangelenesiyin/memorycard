@@ -33,11 +33,17 @@ const successNormal = document.querySelector(".successNormal");
 const successHard = document.querySelector(".successHard");
 const nextLevel = document.querySelector(".next");
 const backMainMenu = document.querySelector(".back");
+const backMainMenu1 = document.querySelector(".back1");
+const timer = document.querySelector(".timervalue");
+const failure = document.querySelector(".failure");
+const tryAgain = document.querySelector(".tryagain");
 
 normalButton.addEventListener("click", startNormal);
 hardButton.addEventListener("click", startHard);
 nextLevel.addEventListener("click", proceedHard);
 backMainMenu.addEventListener("click", backToMenu);
+backMainMenu1.addEventListener("click", backToMenu1);
+tryAgain.addEventListener("click", resetGame);
 
 // ================================================
 
@@ -73,6 +79,7 @@ function hardDeck() {
 
 // ================================================
 
+// success page after clearing normal mode - upon clicking Next Level
 function proceedHard() {
   successNormal.classList.add("none");
   hardMode.classList.remove("none");
@@ -80,8 +87,15 @@ function proceedHard() {
   shuffleArray(hardFruitsArray);
 }
 
+// success page after clearing normal mode - upon clicking Main Menu
 function backToMenu() {
   successNormal.classList.add("none");
+  mainMenu.classList.remove("none");
+}
+
+// success page after clearing hard mode - upon clicking Main Menu
+function backToMenu1() {
+  successHard.classList.add("none");
   mainMenu.classList.remove("none");
 }
 
@@ -113,16 +127,55 @@ function shuffleArray(array) {
   }
 }
 
-// empty array to store opened cards
+// empty arrays
 let compareCards = [];
 let compareHardCards = [];
 let openCards = [];
 let openHardCards = [];
+let timerSeconds = 20;
+let startTimer = false;
+
+// ================================================
+
+function updateDisplay() {
+  const minutes = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
+  const seconds = String(timerSeconds % 60).padStart(2, "0");
+  timer.textContent = `${minutes}:${seconds}`;
+}
+
+function startUponClick() {
+  if (!startTimer) {
+    startTimer = true;
+    updateDisplay();
+    let timerInterval = setInterval(() => {
+      timerSeconds--;
+      updateDisplay();
+      if (timerSeconds === 0 && openCards.length < 16) {
+        clearInterval(timerInterval);
+        gameOver();
+      }
+    }, 1000);
+  }
+}
+
+function gameOver() {
+  normalMode.classList.add("none");
+  failure.classList.remove("none");
+}
+
+function resetGame() {
+  failure.classList.add("none");
+  normalMode.classList.remove("none");
+  startUponClick();
+}
+
+// ================================================
 
 // append image elements in each grid upon clicking - normal mode
 for (let i = 0; i < normalCard.length; i++) {
   const clickedCard = normalCard[i];
   clickedCard.addEventListener("click", function (event) {
+    startUponClick();
     // checks if clicked card has already been matched and open
     if (clickedCard.classList.contains("open")) {
       event.preventDefault();
@@ -219,6 +272,8 @@ function compareHard() {
     }
   }
 }
+
+// ================================================
 
 // triggers when player completes normal mode
 function completeNormalLevel() {
