@@ -16,12 +16,12 @@
 The time given to complete this project is 1 week.<br />
 
 I outlined the steps I took to build this project below:
-1. Draw a rough sketch of the wireframe to display the flow of the game e.g. main menu, actual game, win/loss pages, etc
+1. Draw a rough sketch of the wireframe to display the flow of the game - you can view it <a href="https://www.figma.com/file/pAYLwdUUbU9GbX8jzC97Gh/Memory-Card-Game-(Project-1)?type=design&node-id=0%3A1&mode=design&t=xMCBTFMv7KVi3MKj-1">here</a>
 2. Build the skeleton of the game using HTML, CSS, and Bootstrap
 3. Integrate the game logic using JavaScript:
    - Shuffling card deck
    - Append and render images upon clicking each card
-   - Comparing two cards and invoke an action (flipping it back if not identical, remain open AND disable clicks if identical)
+   - Comparing two cards and invoke an action (flip it back if not identical, remain open AND disable clicks if identical)
    - Timer countdown and invoke an action (game over page if lose, next level page/game complete page if win)
 
 ## Description
@@ -33,6 +33,7 @@ The game's objective is to click and match two identical cards until all cards a
 ## Screenshots
 
 ### Main Menu
+![image](https://github.com/evangelenesiyin/memorycard/assets/108106809/1f5c2add-9348-4973-9e6c-a0150fd6a50b)
 
 ### Normal and Hard Mode
 
@@ -42,8 +43,9 @@ The game's objective is to click and match two identical cards until all cards a
 <ul>
   <li>HTML</li>
   <li>CSS</li>
-  <li>Bootstrap (Incorporated into some portions of HTML</li>
+  <li>Bootstrap</li>
   <li>Git & GitHub</li>
+  <li>ViteJS</li>
 </ul>
 
 ## Getting Started
@@ -52,4 +54,7 @@ Flip It! is deployed on Vercel, click here to view and play the game - https://m
 
 ## Next Steps
 
-## Credits and References
+<ul>
+  <li>Ensure scalability to accommodate and integrate other modes with increased difficulty, such as having more grids without manually adding them in HTML.</li>
+  <li>Allow selection of elements by including other categories of images e.g. animals, plants/flowers, etc.</li>
+</ul>
