@@ -55,7 +55,7 @@ p {
 .next, .back, .back1, .tryagain {
   width: 130px;
 }
-.timer, .timervalue {
+.timer, .timervalue, .timerhard, .hardtimervalue {
   font-size: 18px;
   margin-top: -30px;
   margin-bottom: 10px;
