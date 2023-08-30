@@ -38,7 +38,7 @@ The game's objective is to click and match two identical cards until all cards a
 ### Normal and Hard Mode
 
 <img src="https://github.com/evangelenesiyin/memorycard/assets/108106809/b277d484-942a-4f2a-ac3f-26c579c3ed51" width="400" />
-<img src="https://github.com/evangelenesiyin/memorycard/assets/108106809/0265beb8-e5c3-42b7-8d24-13c96c627323" width="400" />
+<img src="https://github.com/evangelenesiyin/memorycard/assets/108106809/7bffeb36-2eee-45bb-afd7-144e9f7c4e62" width="400" />
 
 ## Technologies Used
 
