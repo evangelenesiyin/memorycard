@@ -44,9 +44,8 @@ The game's objective is to click and match two identical cards until all cards a
 
 <ul>
   <li>HTML</li>
-  <li>CSS</li>
-  <li>Bootstrap</li>
-  <li>Git & GitHub</li>
+  <li>CSS & Bootstrap</li>
+  <li>JavaScript</li>
   <li>ViteJS</li>
 </ul>
 
