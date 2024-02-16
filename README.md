@@ -28,7 +28,7 @@ I also planned and integrated the following game logic:
    - Compare two cards and invoke an action (flip it back if not identical, remain open AND disable clicks if identical)
    - Timer countdown and invoke an action (game over page if lose, next level page/game complete page if win)
 
-Even though it is a simple concentration game, a lot of thought has to go behind crafting the logic while thinking in the perspective of players who will be playing my game. It is important to predict their behaviour as they will be "trying their best" in every way possible to break it by, for example, clicking every card in a random and quick manner, and this includes cards that were already open, etc. I had to also consider at which point does the timer starts ticking down, the moment the player enters the level, or when the first card was clicked.
+Even though it is a simple concentration game, a lot of thought has to go behind crafting the logic while thinking in the perspective of players who will be playing my game. It is important to predict their behaviour as they will be "trying their best" in every way possible to break it by, for example, clicking every card in a random and quick manner, and this includes cards that were already matched and open, etc. I had to also consider at which point does the timer starts counting down, the moment the player enters the level, or when the first card was clicked.
 
 Nevertheless, there are still more to be done to ensure that my game is bug-free and unbreakable.
 
