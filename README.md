@@ -2,7 +2,7 @@
 
 Concentration or memory games are well-known among many, even for beginners who are new to gaming. I decided to build a memory card game as a way to reminisce about my childhood days - this is one of the games that introduced me to the world of gaming.
 
-Flip It!'s objective is to click and match two identical cards until all cards are faced up within a time limit. 
+Flip It!'s objective is to click and match two identical cards containing fruit emojis until all cards are faced up within a time limit.
 
 There are two modes:
 1. **Normal mode:** 4 x 4 grid, to complete within 30 secs
@@ -24,11 +24,11 @@ To kickstart the project, I drew a rough sketch of the wireframe to display the 
 
 I also planned and integrated the following game logic:
    - Shuffle card deck everytime each round restarts
-   - Append and render images upon clicking each card
+   - Append and render images upon clicking each card (Using DOM manipulation)
    - Compare two cards and invoke an action (flip it back if not identical, remain open AND disable clicks if identical)
    - Timer countdown and invoke an action (game over page if lose, next level page/game complete page if win)
 
-Even though it is a simple concentration game, a lot of thought has to go behind crafting the logic while thinking in the perspective of players who will be playing my game. It is important to predict their behaviour as they will be "trying their best" in every way possible to break it by, for example, clicking every card in a random, quick manner, including cards that were already open, etc. I had to also consider at which point does the timer starts ticking down, the moment the player enters the level, or when the first card was clicked.
+Even though it is a simple concentration game, a lot of thought has to go behind crafting the logic while thinking in the perspective of players who will be playing my game. It is important to predict their behaviour as they will be "trying their best" in every way possible to break it by, for example, clicking every card in a random and quick manner, and this includes cards that were already open, etc. I had to also consider at which point does the timer starts ticking down, the moment the player enters the level, or when the first card was clicked.
 
 Nevertheless, there are still more to be done to ensure that my game is bug-free and unbreakable.
 
